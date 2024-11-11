@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:live_streaming/live_page.dart';
 
@@ -14,13 +13,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController userIdController = TextEditingController();
-  bool isHost = false;
-  String generateRandomId() {
-    final random = Random();
-    final timestamp = DateTime.now().millisecondsSinceEpoch;
-    final randomNumber = random.nextInt(10000);
-    return '$timestamp$randomNumber';
-  }
+  TextEditingController liveIdController = TextEditingController();
+  var isHost = false;
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +44,20 @@ class _MyHomePageState extends State<MyHomePage> {
             child: TextFormField(
               controller: userIdController,
               decoration: const InputDecoration(
-                hintText: "UserId",
+                hintText: "User Id",
                 prefixIcon: Icon(Icons.lock),
+                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextFormField(
+              controller: liveIdController,
+              decoration: const InputDecoration(
+                hintText: "Live Id",
+                prefixIcon: Icon(Icons.live_tv_outlined),
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(),
               ),
@@ -62,9 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               Checkbox(
                 value: isHost,
-                onChanged: (bool? value) {
+                onChanged: (value) {
                   setState(() {
-                    isHost = value ?? false;
+                    isHost = value!;
                   });
                 },
               ),
@@ -78,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 60,
               width: 200,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -86,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           userId: userIdController.text,
                           userName: nameController.text,
                           isHost: isHost,
-                          liveId: generateRandomId(),
+                          liveId: liveIdController.text,
                         ),
                       ));
                 },

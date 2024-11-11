@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:live_streaming/constant.dart';
 import 'package:zego_uikit_prebuilt_live_streaming/zego_uikit_prebuilt_live_streaming.dart';
 
-class LivePage extends StatefulWidget {
+class LivePage extends StatelessWidget {
   final String userId;
   final String userName;
   final bool isHost;
@@ -11,14 +11,9 @@ class LivePage extends StatefulWidget {
       {super.key,
       required this.userName,
       required this.userId,
-      required this.isHost,
+      this.isHost = false,
       required this.liveId});
 
-  @override
-  State<LivePage> createState() => _LivePageState();
-}
-
-class _LivePageState extends State<LivePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,10 +21,10 @@ class _LivePageState extends State<LivePage> {
       child: ZegoUIKitPrebuiltLiveStreaming(
         appID: Constants.appId,
         appSign: Constants.appSign,
-        userID: widget.userId,
-        userName: widget.userName,
-        liveID: widget.liveId,
-        config: widget.isHost
+        userID: userId,
+        userName: userName,
+        liveID: liveId,
+        config: isHost
             ? ZegoUIKitPrebuiltLiveStreamingConfig.host()
             : ZegoUIKitPrebuiltLiveStreamingConfig.audience(),
       ),
