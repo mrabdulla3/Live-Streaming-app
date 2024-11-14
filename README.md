@@ -22,7 +22,7 @@ Clone the Repository:
 
 bash
 Copy code
-git clone https://github.com/yourusername/live-streaming-app.git
+git clone https://github.com/mrabdulla3/Live-Streaming-app.git
 cd live-streaming-app
 Setup Dependencies:
 
@@ -57,6 +57,9 @@ ZEGOCLOUD SDK: SDK for enabling live streaming capabilities.
 Dart: Programming language used in Flutter.
 
 📸 Screenshots
+![IMG_20241114_235442](https://github.com/user-attachments/assets/074d4081-1570-43d6-8eb8-9714c7f4e762)
+
+
 Host Mode	Audience Mode
 🎯 Future Improvements
 Add chat support for audience members.
